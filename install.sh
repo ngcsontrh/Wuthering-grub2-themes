@@ -311,15 +311,8 @@ updating_grub() {
     grub2-mkconfig -o /boot/grub2/grub.cfg
   # Check for Fedora (regular or Atomic)
   elif has_command dnf || has_command rpm-ostree; then
-    # Check for UEFI
-    if [[ -f /boot/efi/EFI/fedora/grub.cfg ]]; then
-      prompt -s "Find config file on /boot/efi/EFI/fedora/grub.cfg ...\n"
-      grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
-    # Check for BIOS
-    elif [[ -f /boot/grub2/grub.cfg ]]; then
-      prompt -s "Find config file on /boot/grub2/grub.cfg ...\n"
-      grub2-mkconfig -o /boot/grub2/grub.cfg
-    fi
+    prompt -s "Updating GRUB configuration for Fedora...\n"
+    grub2-mkconfig -o /boot/grub2/grub.cfg
   fi
 
   # Success message
